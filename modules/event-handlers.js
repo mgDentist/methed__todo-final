@@ -29,7 +29,7 @@ export const deleteTask = () => {
         btn.addEventListener('click', function () {
             const index = this.dataset.index
             removeStorage(index)
-            document.location.reload(); 
+            document.location.reload();
         });
     });
 };
@@ -40,20 +40,20 @@ export const completeTask = () => {
     btnsEdit.forEach((btn, index) => {
         btn.addEventListener('click', () => {
             const todos = getStorage('todos') || [];
-            
+
             if (!todos[index].isCompleted) {
                 todos[index].isCompleted = true;
-            
+
             } else {
                 todos[index].isCompleted = false;
             }
 
             setStorage('todos', todos);
 
-            document.location.reload(); 
+            document.location.reload();
 
             //? спросить у Лены почему не нужно тут вызывать createTr() и на автомате РЕрендериться строка
-            //? хотя я не вызываю функцию создания строки createTr() 
+            //? хотя я не вызываю функцию создания строки createTr()
         });
     });
 };

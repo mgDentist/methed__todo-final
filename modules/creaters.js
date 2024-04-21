@@ -54,6 +54,7 @@ const createForm = (div) => {
 
 const createTable = (div) => {
     const tableWrapper = document.createElement('div');
+    const tBody = document.createElement('tbody');
 
     tableWrapper.classList.add('table-wrapper');
 
@@ -76,46 +77,56 @@ const createTable = (div) => {
     div.append(tableWrapper);
     tableWrapper.append(table);
     table.append(tHead);
+    table.append(tBody);
     tHead.append(tr);
     tr.append(th1, th2, th3, th4);
 };
 
 export const createTr = () => {
+    const tBody = document.querySelector('tbody');
+
     const todos = getStorage('todos') || [];
-    
-    todos.map(({text, isCompleted}, index) => {
-    const tr = document.createElement('tr');
-    if (isCompleted) {
-        tr.classList.add('table-success');
-        tr.classList.remove('table-light');
-    } else {
-        tr.classList.remove('table-success');
-        tr.classList.add('table-light');
-    }
 
-    const td1 = document.createElement('td');
-    td1.textContent = index + 1;
+    todos.map(({ text, isCompleted }, index) => {
+        const tr = document.createElement('tr');
+        if (isCompleted) {
+            tr.classList.add('table-success');
+            tr.classList.remove('table-light');
+        } else {
+            tr.classList.remove('table-success');
+            tr.classList.add('table-light');
+        }
 
-    const td2 = document.createElement('td');
-    td2.textContent = text;
+        const td1 = document.createElement('td');
+        td1.textContent = index + 1;
 
-    const td3 = document.createElement('td');
-    td3.textContent = isCompleted ? 'Выполнено' : 'В процессе';
+        const td2 = document.createElement('td');
+        td2.textContent = text;
+        td2.classList.add('task');
 
-    const td4 = document.createElement('td');
-    const btnDelete = document.createElement('button');
-    btnDelete.classList.add('btn', 'btn-danger', 'btn-delete');
-    btnDelete.textContent = 'Удалить';
+        if (isCompleted) {
+            td2.classList.add('text-decoration-line-through');
+        } else {
+            td2.classList.remove('text-decoration-line-through');
+        }
 
-    const btnEdit = document.createElement('button');
-    btnEdit.classList.add('btn', 'btn-success', 'btn-edit');
-    btnEdit.textContent = 'Завершить';
+        const td3 = document.createElement('td');
+        td3.textContent = isCompleted ? 'Выполнено' : 'В процессе';
 
-    td4.append(btnDelete);
-    td4.append(btnEdit);
+        const td4 = document.createElement('td');
+        const btnDelete = document.createElement('button');
+        btnDelete.classList.add('btn', 'btn-danger', 'btn-delete', 'me-1');
+        btnDelete.textContent = 'Удалить';
 
-    tr.append(td1, td2, td3, td4);
+        const btnEdit = document.createElement('button');
+        btnEdit.classList.add('btn', 'btn-success', 'btn-edit');
+        btnEdit.textContent = 'Завершить';
 
-    document.querySelector('table').append(tr);
+        td4.append(btnDelete);
+        td4.append(btnEdit);
+
+        tr.append(td1, td2, td3, td4);
+
+        tBody.append(tr);
     });
 };
