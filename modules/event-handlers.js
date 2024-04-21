@@ -49,8 +49,11 @@ export const completeTask = () => {
             }
 
             setStorage('todos', todos);
-            createTr();
+
             document.location.reload(); 
+
+            //? спросить у Лены почему не нужно тут вызывать createTr() и на автомате РЕрендериться строка
+            //? хотя я не вызываю функцию создания строки createTr() 
         });
     });
 };
