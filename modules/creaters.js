@@ -14,7 +14,7 @@ export const createMainDivContainer = () => {
 const createMainTitle = (div) => {
     const h3 = document.createElement('h3');
 
-    h3.textContent = 'Todo App';
+    h3.textContent = `Todo App. Пользователь: ${auth}`;
 
     div.append(h3);
 };
@@ -38,6 +38,7 @@ const createForm = (div) => {
 
     btnSave.classList.add('btn', 'btn-primary', 'me-3', 'btn-add');
     btnSave.setAttribute('type', 'submit');
+    btnSave.setAttribute('disabled', 'disabled');
     btnSave.textContent = 'Сохранить';
 
     const btnReset = document.createElement('button');

@@ -2,6 +2,19 @@ import { setStorage, getStorage, removeStorage } from "./data-managers.js";
 import { auth } from "./authorization.js";
 import { createTr } from "./creaters.js";
 
+export const saveBtnToggleStatus = () => {
+    const addBtn = document.querySelector('.btn-add');
+    const input = document.querySelector('.form-control');
+
+    input.addEventListener('input', () => {
+        if (input.value) {
+            addBtn.removeAttribute('disabled');
+        } else {
+            addBtn.setAttribute('disabled', 'disabled');
+        }
+    });
+};
+
 export const addTodoClick = () => {
     const input = document.querySelector('.form-control');
     const addBtn = document.querySelector('.btn-add');
