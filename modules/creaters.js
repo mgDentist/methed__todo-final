@@ -1,4 +1,5 @@
-import { getStorage, setStorage } from "./data-managers.js";
+import { getStorage } from "./data-managers.js";
+import { auth } from "./authorization.js";
 
 export const createMainDivContainer = () => {
     const div = document.querySelector('.app-container');
@@ -85,7 +86,9 @@ const createTable = (div) => {
 export const createTr = () => {
     const tBody = document.querySelector('tbody');
 
-    const todos = getStorage('todos') || [];
+    tBody.innerHTML = '';
+
+    const todos = getStorage(auth) || [];
 
     todos.map(({ text, isCompleted }, index) => {
         const tr = document.createElement('tr');

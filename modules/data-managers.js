@@ -1,3 +1,5 @@
+import { auth } from "./authorization.js";
+
 export const setStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
 };
@@ -9,8 +11,8 @@ export const getStorage = (key) => {
 };
 
 export const removeStorage = (index) => {
-    const tasks = JSON.parse(localStorage.getItem('todos')) || [];
+    const tasks = JSON.parse(localStorage.getItem(auth)) || [];
 
     tasks.splice(index, 1);
-    localStorage.setItem('todos', JSON.stringify(tasks));
+    localStorage.setItem(auth, JSON.stringify(tasks));
 }; 
