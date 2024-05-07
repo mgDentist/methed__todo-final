@@ -19,11 +19,10 @@ export const addTodoClick = () => {
     const input = document.querySelector('.form-control');
     const addBtn = document.querySelector('.btn-add');
 
-    const todos = getStorage(auth) || [];
-
     addBtn.addEventListener('click', (e) => {
         e.preventDefault();
         const todoText = input.value.trim();
+        const todos = getStorage(auth) || [];
 
         if (todoText) {
             const todo = { text: todoText, isCompleted: false };
